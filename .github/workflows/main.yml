@@ -3,6 +3,9 @@ on:
   schedule:
   - cron:  '0 23 * * *'
   workflow_dispatch:
+  repository_dispatch:
+      types:
+        - start
 
 jobs:
   send_message:
@@ -27,3 +30,4 @@ jobs:
       APP_SECRET: ${{ secrets.APP_SECRET }}
       TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
       WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+      XINZUO_API_KEY: ${{ secrets.XINZUO_API_KEY }}

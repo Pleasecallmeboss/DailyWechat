@@ -27,10 +27,17 @@ def get_random_color():
 def get_weather(city, key):
     url = f"https://api.seniverse.com/v3/weather/daily.json?key={key}&location={city}&language=zh-Hans&unit=c&start=-1&days=5"
     res = requests.get(url).json()
-    print(res)
+    # print(res)
     weather = (res['results'][0])["daily"][0]
     city = (res['results'][0])["location"]["name"]
     return city, weather
+
+def get_yunshi(key, xinzuo):
+    url = f"https://apis.tianapi.com/star/index?key={key}&astro={xinzuo}"
+    res = requests.get(url).json()
+    print(res)
+    print(res["result"]["list"][-1]["content"])
+    return res["result"]["list"][-1]["content"]
 
 
 def get_count(born_date):
@@ -43,3 +50,6 @@ def get_birthday(birthday):
     if nextdate < today:
         nextdate = nextdate.replace(year=nextdate.year + 1)
     return (nextdate - today).days
+
+def fix_words(word):
+    return word[0:20],word[20:40],word[40:60],word[60:80],word[80:100]
